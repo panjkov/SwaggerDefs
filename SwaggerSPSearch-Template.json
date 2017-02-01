@@ -1,0 +1,106 @@
+{
+	"swagger":"2.0",
+	"info":{"title":"Sharepoint","description":"API for <<SITEURL.SHAREPOINT.COM>>","version":"0.0.0"},
+	"host":"<<SITEURL.SHAREPOINT.COM>>",
+	"basePath":"/_api",
+	"schemes":["https"],
+	"paths":{
+		"/search/query":{
+			"get":{
+				"tags":["Search"],
+				"description":"Query",
+				"operationId":"query",
+				"produces":["application/json"],
+				"parameters":[
+					{"name":"querytext","in":"query","description":"querytext","required":true,"type":"string","x-example":""},
+					{"name":"selectproperties","in":"query","description":"selectproperties","required":false,"type":"string","x-example":""}],
+				"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Query"}}},
+				"security":[]
+			}
+		}
+	},
+	"definitions":{
+		"Query":{
+			"description":"Model for Query",
+			"required":["ElapsedTime"],
+			"properties":{
+				"ElapsedTime":{"type":"integer","format":"int32","x-example":"667"},
+				"odata.metadata":{"type":"string","x-example":""},
+				"PrimaryQueryResult":{"$ref":"#/definitions/PrimaryQueryResult","x-example":""},
+				"Properties":{"type":"array","items":{"$ref":"#/definitions/Properties2"},"x-example":""},
+				"SecondaryQueryResults":{"type":"array","items":{"type":"string"},"x-example":"[]"},
+				"SpellingSuggestion":{"type":"string","x-example":""},
+				"TriggeredRules":{"type":"array","items":{"type":"string"},"x-example":"[]"}
+			}
+		},
+		"Properties2":{
+			"description":"Model for Properties2",
+			"required":["Key"],
+			"properties":{
+				"Key":{"type":"string","x-example":"RowLimit"},
+				"Value":{"type":"string","x-example":"10"},
+				"ValueType":{"type":"string","x-example":"Edm.Int32"}
+			}
+		},
+		"PrimaryQueryResult":{
+			"description":"Model for PrimaryQueryResult",
+			"required":["CustomResults"],
+			"properties":{
+				"CustomResults":{"type":"array","items":{"type":"string"},"x-example":"[]"},
+				"QueryId":{"type":"string","x-example":"1f094dc5-ea74-4a59-b427-0898058ceb2b"},
+				"QueryRuleId":{"type":"string","x-example":"00000000-0000-0000-0000-000000000000"},
+				"RefinementResults":{"type":"string","x-example":""},
+				"RelevantResults":{"$ref":"#/definitions/RelevantResults","x-example":""},
+				"SpecialTermResults":{"type":"string","x-example":""}
+			}
+		},
+		"RelevantResults":{
+			"description":"Model for RelevantResults",
+			"required":["GroupTemplateId"],
+			"properties":{
+				"GroupTemplateId":{"type":"string","x-example":""},
+				"ItemTemplateId":{"type":"string","x-example":""},
+				"Properties":{"type":"array","items":{"$ref":"#/definitions/Properties"},"x-example":""},
+				"ResultTitle":{"type":"string","x-example":""},
+				"ResultTitleUrl":{"type":"string","x-example":""},
+				"RowCount":{"type":"integer","format":"int32","x-example":"10"},
+				"Table":{"$ref":"#/definitions/Table","x-example":""},
+				"TotalRows":{"type":"integer","format":"int32","x-example":"38"},
+				"TotalRowsIncludingDuplicates":{"type":"integer","format":"int32","x-example":"49"}
+			}
+		},
+		"Table":{
+			"description":"Model for Table",
+			"required":["Rows"],
+			"properties":{
+				"Rows":{"type":"array","items":{"$ref":"#/definitions/Rows"},"x-example":""}
+			}
+		},
+		"Rows":{
+			"description":"Model for Rows",
+			"required":["Cells"],
+			"properties":{
+				"Cells":{"type":"array","items":{"$ref":"#/definitions/Cells"},"x-example":""}
+			}
+		},
+		"Cells":{
+			"description":"Model for Cells",
+			"required":["Key"],
+			"properties":{
+				"Key":{"type":"string","x-example":"Rank"},
+				"Value":{"type":"string","x-example":"27.1322689056396"},
+				"ValueType":{"type":"string","x-example":"Edm.Double"}
+			}
+		},
+		"Properties":{
+			"description":"Model for Properties",
+			"required":["Key"],
+			"properties":{
+				"Key":{"type":"string","x-example":"GenerationId"},
+				"Value":{"type":"string","x-example":"9223372036854775806"},
+				"ValueType":{"type":"string","x-example":"Edm.Int64"}
+			}
+		}
+	},
+	"securityDefinitions":{},
+	"security":[],"tags":[{"name":"Search","description":"Operations about Search"}]}
