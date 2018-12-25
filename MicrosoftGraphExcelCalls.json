@@ -1,0 +1,479 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "MicrosoftGraphExcelCalls",
+    "description": "TODO: Add Description",
+    "contact": {}
+  },
+  "host": "graph.microsoft.com",
+  "basePath": "/v1.0",
+  "securityDefinitions": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://graph.microsoft.com/v1.0/me/",
+      "scopes": {}
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/me/drive/search(q='{searchQuery}')": {
+      "get": {
+        "description": "TODO: Add Description",
+        "summary": "https://graph.microsoft.com/v1.0/me/drive/search(q='.xlsx')?$select=id,name",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "SearchQXlsxGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }          
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GraphDriveItemArray"
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/me/drive/items/{driveItemId}/workbook/worksheets/{sheetName}/tables": {
+      "get": {
+        "description": "TODO: Add Description",
+        "summary": "https://graph.microsoft.com/v1.0/me/drive/items/01WBXYYZPPXGSL3XREAFA3JNVEQCX2WP4G/workbook/worksheets/Sheet1/tables",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GetTablesInWorksheet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+					"name": "driveItemId",
+					"in": "path",
+					"required": true,
+					"type": "string"
+				},
+				{
+					"name": "sheetName",
+					"in": "path",
+					"required": true,
+					"type": "string"
+				}],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/me/drive/items/{driveItemId}/workbook/worksheets/{sheetName}/tables/{tableName}/rows/add": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "https://graph.microsoft.com/v1.0/me/drive/items/01WBXYYZPPXGSL3XREAFA3JNVEQCX2WP4G/workbook/worksheets/Sheet1/tables/Table1/rows/add",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "AddRowsToTable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ValueArrayModel"
+            }
+          },
+          {
+            "name": "driveItemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sheetName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tableName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/workbookTableRow"
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    },
+    "/me/drive/items/{driveItemId}/workbook/worksheets/{sheetName}/range(address='{rangeName}')": {
+      "get": {
+        "description": "TODO: Add Description",
+        "summary": "https://graph.microsoft.com/v1.0/me/drive/items/01WBXYYZPPXGSL3XREAFA3JNVEQCX2WP4G/workbook/worksheets/Sheet1/range(address='D3')",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GetValueInRange",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "driveItemId",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "sheetName",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "rangeName",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/workbookRange"
+            },
+            "headers": {}            
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      },
+      "patch": {
+        "description": "TODO: Add Description",
+        "summary": "https://graph.microsoft.com/v1.0/me/drive/items/01WBXYYZPPXGSL3XREAFA3JNVEQCX2WP4G/workbook/worksheets/Sheet1/range(address='A30')",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "UpdateValueInRange",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ValueArrayModel"
+            }
+          },
+          {
+            "name": "driveItemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sheetName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rangeName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/workbookRange"
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Object": {
+			"type": "object",
+			"properties": {
+				
+			}
+    },
+    "stringArray": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+      },
+    "ValueArray": {
+      "title": "ValueArray",
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "values"
+      ]
+    },
+    "driveItem": {
+      "type": "object",
+      "properties" : {
+        "@odata.type": {
+          "type": "string"
+      },
+      "createdDateTime": {
+          "type": "string"
+      },
+      "id": {
+          "type": "string"
+      },
+      "lastModifiedDateTime": {
+          "type": "string"
+      },
+      "name": {
+          "type": "string"
+      },
+      "webUrl": {
+          "type": "string"
+      },
+      "size": {
+          "type": "integer"
+      }         
+      }
+  },
+  "GraphDriveItemArray": {
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/driveItem"
+        }
+      }
+    }
+  },
+  "workbookRange": {
+    "type": "object",
+      "properties" : {
+        "@odata.context": {
+          "type": "string"
+      },
+      "@odata.type": {
+          "type": "string"
+      },
+      "@odata.id": {
+          "type": "string"
+      },
+        "address": {
+          "type": "string"
+      },
+      "addressLocal": {
+          "type": "string"
+      },
+      "columnCount": {
+        "type" : "integer",
+        "format" : "int64"
+      },
+      "cellCount": {
+        "type" : "integer",
+        "format" : "int64"
+      },
+      "columnHidden": {
+        "type" : "boolean"
+      },
+      "rowHidden": {
+        "type" : "boolean"
+      },
+      "numberFormat": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }      
+      },
+      "columnIndex": {
+        "type" : "integer",
+        "format" : "int64"
+      },
+      "text": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }      
+      },
+      "formulas": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }     
+      },
+      "formulasLocal": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }      
+      },
+      "formulasR1C1": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }    
+      },
+      "hidden": {
+        "type" : "boolean"
+      },
+      "rowCount": {
+        "type" : "integer",
+        "format" : "int64"
+      },
+      "rowIndex": {
+        "type" : "integer",
+        "format" : "int64"
+      },
+      "valueTypes": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }      
+      },
+      "values": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+              "type": "string"
+          }
+      }    
+  }
+}
+},
+  "ValueArrayModel": {
+      "type": "object",
+      "properties": {
+          "values": {
+              "type": "array",
+              "items": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  }
+              }
+          }
+      }
+  },
+  "workbookTableRow": {
+      "type": "object",
+      "properties": {
+          "@odata.context": {
+              "type": "string"
+          },
+          "@odata.type": {
+              "type": "string"
+          },
+          "@odata.id": {
+              "type": "string"
+          },
+          "index": {
+              "type": "integer"
+          },
+          "values": {
+              "type": "array",
+              "items": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  }
+              }
+          }
+      }
+  }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
