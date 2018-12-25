@@ -33,7 +33,7 @@
         "tags": [
           "Misc"
         ],
-        "operationId": "SearchQXlsxGet",
+        "operationId": "SearchOneDrive",
         "produces": [
           "application/json"
         ],
